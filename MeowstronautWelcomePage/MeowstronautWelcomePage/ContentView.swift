@@ -44,13 +44,13 @@ struct MainPage: View {
                 Spacer()
                 
                 VStack(spacing: 70) {
-                    Button("Start") {
-                        print("Start Game tapped")
+                    NavigationLink(destination: LoginView()) {
+                        Text("Start")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .tracking(3)
+                            .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
                     }
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .tracking(3)
-                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
                     
                     
                     NavigationLink(destination: ShopView()) {
@@ -182,7 +182,56 @@ struct CreditsView : View{
         }
     }
 }
-    
-    #Preview {
-        ContentView()
+
+struct LoginView: View {
+    @State private var playerName: String = ""
+    var body: some View {
+        ZStack {
+            //Image("Space2D")
+            
+            LinearGradient(
+                gradient: Gradient(colors: [.purple, .blue]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+            
+            VStack(spacing: 30) {
+                TextField("Enter your name", text: $playerName)
+                    .padding()
+                    .background(Color.white.opacity(0.9))
+                    .cornerRadius(12)
+                    .shadow(radius: 5)
+                    .font(.system(size: 20, weight: .medium, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 280)
+                
+                NavigationLink(destination: GameView()){
+                        Text("Start Game")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 50)
+                            .padding(.vertical, 15)
+                            .background(Color.purple)
+                            .cornerRadius(12)
+                            .shadow(radius: 8)
+                }
+            }
+        }
     }
+    
+}
+
+struct GameView: View {
+    var body: some View {
+        ZStack{
+            Color.black.edgesIgnoringSafeArea(.all)
+            Text("Developing...")
+                .foregroundStyle(.white)
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
