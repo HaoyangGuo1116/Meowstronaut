@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+//import UIKit
 
 @main
 struct MeowstronautWelcomePageApp: App {
+/*
+    init() {
+            UIWindow.appearance().backgroundColor = UIColor.black
+        }
+*/
     var body: some Scene {
         WindowGroup {
             ContentView()

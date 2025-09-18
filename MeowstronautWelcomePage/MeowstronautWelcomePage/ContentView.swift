@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MainPage()
+        NavigationStack {
+            MainPage()
+        }
+        
     }
 }
 
@@ -49,13 +52,14 @@ struct MainPage: View {
                     .tracking(3)
                     .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
                     
-                    Button("Shop") {
-                        print("Shop tapped")
+                    
+                    NavigationLink(destination: ShopView()) {
+                        Text("Shop")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .tracking(3)
+                            .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
                     }
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-                    .tracking(3)
-                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
                     
                     
                     Button("Scoreboard") {
@@ -84,49 +88,7 @@ struct MainPage: View {
                     .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
                     .sheet(isPresented: $showingSheet,
                            onDismiss: didDismiss){
-                        ZStack(alignment: .top) {
-                            Image("Space2D")
-                                .resizable()
-                                .scaledToFill()
-                                .ignoresSafeArea(edges: .all)
-                            
-                            VStack(spacing: 70) {
-                                Text("Credits")
-                                    .font(.system(size: 48, weight: .heavy, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .shadow(color: .blue, radius: 2)
-                                    .shadow(color: .white.opacity(0.5), radius: 6, x:0, y:-15)
-                                    .rotation3DEffect(.degrees(20), axis: (x: 0.2, y: 0.0, z: 0.0))
-                                    .tracking(4)
-                                    //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                                    .padding(.top, 70)
-                                
-                                //Spacer()
-                                
-                                Text("Developed by:")
-                                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .tracking(3)
-                                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
-                                
-                                Text("Haoyang Guo")
-                                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .tracking(3)
-                                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
-                                Text("XXX")
-                                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .tracking(3)
-                                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
-                                Text("XXX")
-                                    .font(.system(size: 22, weight: .bold, design: .rounded))
-                                    .foregroundColor(.white)
-                                    .tracking(3)
-                                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
-                            }
-                            
-                        }
+                        CreditsView()
                     }
                     
                 }
@@ -144,8 +106,81 @@ struct MainPage: View {
         }
     }
     func didDismiss() {
-            print("Dismissed")
+        print("Dismissed")
+    }
+}
+
+
+struct ShopView: View {
+    var body: some View {
+        ZStack(alignment: .top) {
+            Image("SpaceShopBg")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 1000)
+                .ignoresSafeArea(edges: .all)
+            
+            Image("SpaceShop")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 500)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
+        
+    }
+}
+
+struct CreditsView : View{
+    var body: some View {
+        ZStack(alignment: .top) {
+            Image("Space2D")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea(edges: .all)
+            
+            VStack(spacing: 70) {
+                Text("Credits")
+                    .font(.system(size: 48, weight: .heavy, design: .rounded))
+                    .foregroundColor(.white)
+                    .shadow(color: .blue, radius: 2)
+                    .shadow(color: .white.opacity(0.5), radius: 6, x:0, y:-15)
+                    .rotation3DEffect(.degrees(20), axis: (x: 0.2, y: 0.0, z: 0.0))
+                    .tracking(4)
+                    .padding(.top, 70)
+                
+                
+                Text("Developed by:")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .tracking(3)
+                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
+                
+                Text("Haoyang Guo")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .tracking(3)
+                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
+                Text("XXX")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .tracking(3)
+                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
+                Text("XXX")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+                    .tracking(3)
+                    .shadow(color: .white.opacity(0.7), radius: 4, x:0, y:-10)
+                
+            }
+            Image("YellowCat")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 150)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            
+            
+        }
+    }
 }
     
     #Preview {
